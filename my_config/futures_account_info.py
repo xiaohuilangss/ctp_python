@@ -1,26 +1,5 @@
 # encoding=utf-8
 
-AUTH_CODE = 'ZLJN90JFX7P2LBLR'
-APP_ID = 'client_modeng_1.0.0'
-
-#Addr
-FRONT_ADDR_TRADE= "tcp://180.166.103.21:55205"
-FRONT_ADDR_DATA= "tcp://180.166.103.21:55213"
-
-#LoginInfo
-BROKER_ID="4040"
-USER_ID="8118018200"
-PASSWORD="ypw313789"
-
-ctp_login_info = {
-    "auth_code": 'ZLJN90JFX7P2LBLR',
-    "app_id": 'client_modeng_1.0.0',
-    "front_addr_trade": "tcp://180.166.103.21:55205",
-    "front_addr_data": "tcp://180.166.103.21:55213",
-    "broker_id": "4040",
-    "user_id": "8118018200",
-    "password": "ypw313789"
-}
 
 ctp_login_info_sim = {
     "auth_code": '0000000000000000',

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="72a5d9e5-735c-4406-b968-4fca090dee0a" name="Default" comment="" />
+    <list default="true" id="72a5d9e5-735c-4406-b968-4fca090dee0a" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/test/ctp_data_sim.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/my_config/futures_account_info.py" afterPath="$PROJECT_DIR$/my_config/futures_account_info.py" />
+      <change beforePath="$PROJECT_DIR$/test/DialogRsp.con" afterPath="$PROJECT_DIR$/test/DialogRsp.con" />
+      <change beforePath="$PROJECT_DIR$/test/QueryRsp.con" afterPath="$PROJECT_DIR$/test/QueryRsp.con" />
+      <change beforePath="$PROJECT_DIR$/test/ctp_sim.py" afterPath="$PROJECT_DIR$/test/ctp_trade_sim.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,45 +18,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ctp_sim.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/ctp_sim.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="792">
-              <caret line="42" column="27" lean-forward="false" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
-              <folding>
-                <element signature="e#17#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="auth_info.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_source/auth_info.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding>
-                <element signature="e#17#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="global_setting.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="global_setting.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/my_config/global_setting.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+            <state relative-caret-position="110">
+              <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+              <folding>
+                <element signature="e#115#125#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="futures_account_info.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my_config/futures_account_info.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ctp_class.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ctp_class.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ctp/my_ctp_api/ctp_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="140" column="41" lean-forward="false" selection-start-line="140" selection-start-column="41" selection-end-line="140" selection-end-column="41" />
+            <state relative-caret-position="68">
+              <caret line="896" column="0" lean-forward="true" selection-start-line="896" selection-start-column="0" selection-end-line="896" selection-end-column="0" />
               <folding>
                 <element signature="e#609#840#0" expanded="false" />
                 <element signature="e#686#840#0" expanded="false" />
@@ -63,6 +58,8 @@
                 <element signature="e#2433#2490#1" expanded="false" />
                 <element signature="e#2694#2929#0" expanded="false" />
                 <element signature="e#2755#2929#0" expanded="false" />
+                <element signature="e#2978#15641#0" expanded="false" />
+                <element signature="e#3039#3601#0" expanded="false" />
                 <element signature="e#3110#3230#1" expanded="false" />
                 <element signature="e#3653#4087#0" expanded="false" />
                 <element signature="e#4330#5246#0" expanded="false" />
@@ -75,6 +72,8 @@
                 <element signature="e#7917#8120#1" expanded="false" />
                 <element signature="e#8459#8702#0" expanded="false" />
                 <element signature="e#8531#8664#0" expanded="false" />
+                <element signature="e#8780#9446#0" expanded="false" />
+                <element signature="e#8797#9342#0" expanded="false" />
                 <element signature="e#9524#10714#0" expanded="false" />
                 <element signature="e#9524#9858#1" expanded="false" />
                 <element signature="e#10199#10486#0" expanded="false" />
@@ -120,9 +119,7 @@
                 <element signature="e#23755#23811#0" expanded="false" />
                 <element signature="e#23884#23940#0" expanded="false" />
                 <element signature="e#24010#24112#0" expanded="false" />
-                <element signature="e#24132#34835#0" expanded="false" />
                 <element signature="e#24132#24155#1" expanded="false" />
-                <element signature="e#24215#24480#0" expanded="false" />
                 <element signature="e#24512#24709#0" expanded="false" />
                 <element signature="e#24740#25405#0" expanded="false" />
                 <element signature="e#24740#24786#1" expanded="false" />
@@ -152,10 +149,7 @@
                 <element signature="e#32826#32957#0" expanded="false" />
                 <element signature="e#33069#34045#0" expanded="false" />
                 <element signature="e#33069#33519#1" expanded="false" />
-                <element signature="e#34086#34835#0" expanded="false" />
                 <element signature="e#34086#34149#1" expanded="false" />
-                <element signature="e#34208#34835#0" expanded="false" />
-                <element signature="e#34536#34670#0" expanded="false" />
                 <element signature="e#34884#38427#0" expanded="false" />
                 <element signature="e#34934#35066#0" expanded="false" />
                 <element signature="e#35118#35630#0" expanded="false" />
@@ -166,15 +160,12 @@
                 <element signature="e#36146#36187#0" expanded="false" />
                 <element signature="e#37628#37737#0" expanded="false" />
                 <element signature="e#38176#38427#0" expanded="false" />
-                <element signature="e#38449#40144#0" expanded="false" />
                 <element signature="e#38493#38718#0" expanded="false" />
-                <element signature="e#38768#38996#0" expanded="false" />
                 <element signature="e#39027#39376#0" expanded="false" />
                 <element signature="e#39066#39311#0" expanded="false" />
                 <element signature="e#39408#39648#0" expanded="false" />
                 <element signature="e#39408#39452#1" expanded="false" />
                 <element signature="e#39478#39550#0" expanded="false" />
-                <element signature="e#39698#40144#0" expanded="false" />
                 <element signature="e#39756#40001#0" expanded="false" />
                 <element signature="e#40028#40144#0" expanded="false" />
                 <element signature="e#40179#41533#0" expanded="false" />
@@ -184,16 +175,6 @@
                 <element signature="e#41019#41055#0" expanded="false" />
                 <element signature="e#41424#41470#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="futures_account_info.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my_config/futures_account_info.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="946">
-              <caret line="43" column="3" lean-forward="false" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -222,6 +203,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>没有找到项目的根目录！请检查项目根文件夹的名字！</find>
+      <find>mctp.mm</find>
+      <find>313789</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -234,12 +217,14 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/my_config/futures_account_info.py" />
         <option value="$PROJECT_DIR$/ctp/my_ctp_api/ctp_sim.py" />
         <option value="$PROJECT_DIR$/data_source/auth_info.py" />
         <option value="$PROJECT_DIR$/my_config/global_setting.py" />
-        <option value="$PROJECT_DIR$/test/ctp_sim.py" />
         <option value="$PROJECT_DIR$/ctp/my_ctp_api/ctp_class.py" />
+        <option value="$PROJECT_DIR$/test/ctp_sim.py" />
+        <option value="$PROJECT_DIR$/test/ctp_trade_sim.py" />
+        <option value="$PROJECT_DIR$/test/ctp_data_sim.py" />
+        <option value="$PROJECT_DIR$/my_config/futures_account_info.py" />
       </list>
     </option>
   </component>
@@ -272,22 +257,6 @@
             <path>
               <item name="ctp_python" type="b2602c69:ProjectViewProjectNode" />
               <item name="ctp_python" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ctp_python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ctp_python" type="462c0819:PsiDirectoryNode" />
-              <item name="ctp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ctp_python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ctp_python" type="462c0819:PsiDirectoryNode" />
-              <item name="ctp" type="462c0819:PsiDirectoryNode" />
-              <item name="my_ctp_api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ctp_python" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ctp_python" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -325,7 +294,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ctp_sim (1)">
+  <component name="RunManager" selected="Python.ctp_data_sim">
+    <configuration name="ctp_data_sim" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ctp_python" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/ctp_data_sim.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="ctp_sim (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -338,7 +325,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ctp_python" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/ctp_sim.py" />
+      <option name="SCRIPT_NAME" value="C:\ctp_python\test\ctp_trade_sim.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -356,20 +343,22 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ctp_python" />
-      <option name="SCRIPT_NAME" value="C:\ctp_python\test\ctp_sim.py" />
+      <option name="SCRIPT_NAME" value="C:\ctp_python\test\ctp_trade_sim.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Python.ctp_sim" />
       <item index="1" class="java.lang.String" itemvalue="Python.ctp_sim (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.ctp_data_sim" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Python.ctp_sim (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.ctp_sim" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.ctp_data_sim" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ctp_sim (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.ctp_sim" />
       </list>
     </recent_temporary>
   </component>
@@ -392,22 +381,22 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.203125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.55709875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48690292" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17708333" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24228396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30709878" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -421,7 +410,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/ctp_sim.py">
+    <entry file="file://$PROJECT_DIR$/test/ctp_trade_sim.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
           <caret line="42" column="27" lean-forward="false" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
@@ -436,7 +425,7 @@
         <state relative-caret-position="66">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="e#17#28#0" expanded="true" />
+            <element signature="e#17#28#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -598,7 +587,6 @@
             <element signature="e#39698#40144#0" expanded="false" />
             <element signature="e#39756#40001#0" expanded="false" />
             <element signature="e#40028#40144#0" expanded="false" />
-            <element signature="e#40179#41533#0" expanded="false" />
             <element signature="e#40179#40292#0" expanded="false" />
             <element signature="e#40719#41533#0" expanded="false" />
             <element signature="e#40762#41338#0" expanded="false" />
@@ -642,53 +630,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my_config/futures_account_info.py">
+    <entry file="file://$PROJECT_DIR$/test/thostmduserapi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="43" column="3" lean-forward="false" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
+        <state relative-caret-position="22">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_source/auth_info.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
+        <state relative-caret-position="176">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
-            <element signature="e#17#28#0" expanded="true" />
+            <element signature="e#17#28#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my_config/global_setting.py">
+    <entry file="file://$PROJECT_DIR$/test/ctp_data_sim.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        <state relative-caret-position="220">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/ctp_sim.py">
+    <entry file="file://$PROJECT_DIR$/test/ctp_trade_sim.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="42" column="27" lean-forward="false" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+        <state relative-caret-position="594">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="e#17#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/thostmduserapi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ctp/my_ctp_api/ctp_class.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="140" column="41" lean-forward="false" selection-start-line="140" selection-start-column="41" selection-end-line="140" selection-end-column="41" />
+        <state relative-caret-position="68">
+          <caret line="896" column="0" lean-forward="true" selection-start-line="896" selection-start-column="0" selection-end-line="896" selection-end-column="0" />
           <folding>
             <element signature="e#609#840#0" expanded="false" />
             <element signature="e#686#840#0" expanded="false" />
@@ -702,6 +683,8 @@
             <element signature="e#2433#2490#1" expanded="false" />
             <element signature="e#2694#2929#0" expanded="false" />
             <element signature="e#2755#2929#0" expanded="false" />
+            <element signature="e#2978#15641#0" expanded="false" />
+            <element signature="e#3039#3601#0" expanded="false" />
             <element signature="e#3110#3230#1" expanded="false" />
             <element signature="e#3653#4087#0" expanded="false" />
             <element signature="e#4330#5246#0" expanded="false" />
@@ -714,6 +697,8 @@
             <element signature="e#7917#8120#1" expanded="false" />
             <element signature="e#8459#8702#0" expanded="false" />
             <element signature="e#8531#8664#0" expanded="false" />
+            <element signature="e#8780#9446#0" expanded="false" />
+            <element signature="e#8797#9342#0" expanded="false" />
             <element signature="e#9524#10714#0" expanded="false" />
             <element signature="e#9524#9858#1" expanded="false" />
             <element signature="e#10199#10486#0" expanded="false" />
@@ -759,9 +744,7 @@
             <element signature="e#23755#23811#0" expanded="false" />
             <element signature="e#23884#23940#0" expanded="false" />
             <element signature="e#24010#24112#0" expanded="false" />
-            <element signature="e#24132#34835#0" expanded="false" />
             <element signature="e#24132#24155#1" expanded="false" />
-            <element signature="e#24215#24480#0" expanded="false" />
             <element signature="e#24512#24709#0" expanded="false" />
             <element signature="e#24740#25405#0" expanded="false" />
             <element signature="e#24740#24786#1" expanded="false" />
@@ -791,10 +774,7 @@
             <element signature="e#32826#32957#0" expanded="false" />
             <element signature="e#33069#34045#0" expanded="false" />
             <element signature="e#33069#33519#1" expanded="false" />
-            <element signature="e#34086#34835#0" expanded="false" />
             <element signature="e#34086#34149#1" expanded="false" />
-            <element signature="e#34208#34835#0" expanded="false" />
-            <element signature="e#34536#34670#0" expanded="false" />
             <element signature="e#34884#38427#0" expanded="false" />
             <element signature="e#34934#35066#0" expanded="false" />
             <element signature="e#35118#35630#0" expanded="false" />
@@ -805,15 +785,12 @@
             <element signature="e#36146#36187#0" expanded="false" />
             <element signature="e#37628#37737#0" expanded="false" />
             <element signature="e#38176#38427#0" expanded="false" />
-            <element signature="e#38449#40144#0" expanded="false" />
             <element signature="e#38493#38718#0" expanded="false" />
-            <element signature="e#38768#38996#0" expanded="false" />
             <element signature="e#39027#39376#0" expanded="false" />
             <element signature="e#39066#39311#0" expanded="false" />
             <element signature="e#39408#39648#0" expanded="false" />
             <element signature="e#39408#39452#1" expanded="false" />
             <element signature="e#39478#39550#0" expanded="false" />
-            <element signature="e#39698#40144#0" expanded="false" />
             <element signature="e#39756#40001#0" expanded="false" />
             <element signature="e#40028#40144#0" expanded="false" />
             <element signature="e#40179#41533#0" expanded="false" />
@@ -822,6 +799,24 @@
             <element signature="e#40762#41338#0" expanded="false" />
             <element signature="e#41019#41055#0" expanded="false" />
             <element signature="e#41424#41470#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_config/futures_account_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_config/global_setting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+          <folding>
+            <element signature="e#115#125#0" expanded="true" />
           </folding>
         </state>
       </provider>
