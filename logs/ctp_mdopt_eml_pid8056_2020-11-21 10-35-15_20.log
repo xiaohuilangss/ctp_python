@@ -1,0 +1,27 @@
+2020-11-21 10:35:16,339 -> ctp_class.py -> [line:142] -> OnFrontConnected -> [INFO]: 
+
+（一）前端连接成功！
+2020-11-21 10:35:16,340 -> ctp_class.py -> [line:151] -> OnFrontConnected -> [INFO]: 
+（二）已发送认证请求！
+2020-11-21 10:35:17,411 -> ctp_class.py -> [line:173] -> OnRspAuthenticate -> [INFO]: 
+（三）已发送登录请求！
+2020-11-21 10:35:17,465 -> ctp_class.py -> [line:184] -> OnRspUserLogin -> [INFO]: 
+
+（三）收到登录回应！
+2020-11-21 10:35:17,466 -> ctp_class.py -> [line:201] -> OnRspUserLogin -> [INFO]: （四）成功发送【查询投资者结算结果】请求！
+2020-11-21 10:35:17,523 -> ctp_class.py -> [line:225] -> OnRspQrySettlementInfo -> [INFO]: （四）收到【查询投资者结算结果】回应！
+2020-11-21 10:35:17,524 -> ctp_class.py -> [line:229] -> OnRspQrySettlementInfo -> [WARNING]: content null
+2020-11-21 10:35:17,524 -> ctp_class.py -> [line:235] -> OnRspQrySettlementInfo -> [INFO]: （五）成功发送【确认投资者结算结果】的请求!
+2020-11-21 10:35:17,579 -> ctp_class.py -> [line:252] -> OnRspSettlementInfoConfirm -> [INFO]: （五）收到【确认投资者结算结果】请求的回应，整个登陆流程完成！
+2020-11-21 10:35:26,156 -> ctp_class.py -> [line:1089] -> login -> [INFO]: 数据ctp初始化完成！
+2020-11-21 10:35:26,159 -> ctp_class.py -> [line:603] -> update_cmd_dict_by_local_json_file -> [WARNING]: 本地未找到文件【C:\ctp_python/source/ctp_cmd_json/ctp_cmd_2020-11-21.json】，请确认当前是当天初启动且未有操作！
+2020-11-21 10:35:26,160 -> ctp_class.py -> [line:786] -> req_order_field_insert -> [INFO]: 开始报单！
+2020-11-21 10:35:26,160 -> ctp_class.py -> [line:874] -> req_order_field_insert -> [ERROR]: ctp 命令下发出错！原因：
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "C:\ctp_python\ctp\my_ctp_api\ctp_class.py", line 795, in req_order_field_insert
+    exchange_id = stk_cc_info['ExchangeID']
+TypeError: 'NoneType' object is not subscriptable
+2020-11-21 10:35:26,297 -> ctp_class.py -> [line:451] -> OnErrRtnOrderAction -> [ERROR]: 撤单失败！
+ErrorId:26
+ErrorMsg:CTP:报单已全成交或已撤销，不能再撤

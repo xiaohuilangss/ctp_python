@@ -1,0 +1,24 @@
+2020-11-21 10:27:31,011 -> ctp_class.py -> [line:142] -> OnFrontConnected -> [INFO]: 
+
+（一）前端连接成功！
+2020-11-21 10:27:31,011 -> ctp_class.py -> [line:151] -> OnFrontConnected -> [INFO]: 
+（二）已发送认证请求！
+2020-11-21 10:27:34,334 -> ctp_class.py -> [line:173] -> OnRspAuthenticate -> [INFO]: 
+（三）已发送登录请求！
+2020-11-21 10:27:34,382 -> ctp_class.py -> [line:184] -> OnRspUserLogin -> [INFO]: 
+
+（三）收到登录回应！
+2020-11-21 10:27:34,385 -> ctp_class.py -> [line:201] -> OnRspUserLogin -> [INFO]: （四）成功发送【查询投资者结算结果】请求！
+2020-11-21 10:27:34,472 -> ctp_class.py -> [line:225] -> OnRspQrySettlementInfo -> [INFO]: （四）收到【查询投资者结算结果】回应！
+2020-11-21 10:27:34,473 -> ctp_class.py -> [line:229] -> OnRspQrySettlementInfo -> [WARNING]: content null
+2020-11-21 10:27:34,521 -> ctp_class.py -> [line:235] -> OnRspQrySettlementInfo -> [INFO]: （五）成功发送【确认投资者结算结果】的请求!
+2020-11-21 10:27:34,568 -> ctp_class.py -> [line:252] -> OnRspSettlementInfoConfirm -> [INFO]: （五）收到【确认投资者结算结果】请求的回应，整个登陆流程完成！
+2020-11-21 10:27:40,847 -> ctp_class.py -> [line:1089] -> login -> [INFO]: 数据ctp初始化完成！
+2020-11-21 10:27:40,848 -> ctp_class.py -> [line:618] -> update_cmd_dict_by_local_json_file -> [ERROR]: cmd_dict反序列化出错！原因：
+ [WinError 3] 系统找不到指定的路径。: 'C:\\ctp_python/modeng_config/data/ctp_cmd_json/'
+Traceback (most recent call last):
+  File "C:\ctp_python\ctp\my_ctp_api\ctp_class.py", line 601, in update_cmd_dict_by_local_json_file
+    f_url = self.get_json_file_name()
+  File "C:\ctp_python\ctp\my_ctp_api\ctp_class.py", line 540, in get_json_file_name
+    os.mkdir(self.cmd_save_dir)
+FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\ctp_python/modeng_config/data/ctp_cmd_json/'

@@ -1,0 +1,17 @@
+2020-11-21 10:29:41,160 -> ctp_class.py -> [line:142] -> OnFrontConnected -> [INFO]: 
+
+（一）前端连接成功！
+2020-11-21 10:29:41,160 -> ctp_class.py -> [line:151] -> OnFrontConnected -> [INFO]: 
+（二）已发送认证请求！
+2020-11-21 10:29:42,363 -> ctp_class.py -> [line:173] -> OnRspAuthenticate -> [INFO]: 
+（三）已发送登录请求！
+2020-11-21 10:29:42,421 -> ctp_class.py -> [line:184] -> OnRspUserLogin -> [INFO]: 
+
+（三）收到登录回应！
+2020-11-21 10:29:42,422 -> ctp_class.py -> [line:201] -> OnRspUserLogin -> [INFO]: （四）成功发送【查询投资者结算结果】请求！
+2020-11-21 10:29:42,471 -> ctp_class.py -> [line:225] -> OnRspQrySettlementInfo -> [INFO]: （四）收到【查询投资者结算结果】回应！
+2020-11-21 10:29:42,471 -> ctp_class.py -> [line:229] -> OnRspQrySettlementInfo -> [WARNING]: content null
+2020-11-21 10:29:42,471 -> ctp_class.py -> [line:235] -> OnRspQrySettlementInfo -> [INFO]: （五）成功发送【确认投资者结算结果】的请求!
+2020-11-21 10:29:42,518 -> ctp_class.py -> [line:252] -> OnRspSettlementInfoConfirm -> [INFO]: （五）收到【确认投资者结算结果】请求的回应，整个登陆流程完成！
+2020-11-21 10:29:50,996 -> ctp_class.py -> [line:1089] -> login -> [INFO]: 数据ctp初始化完成！
+2020-11-21 10:29:50,999 -> ctp_class.py -> [line:603] -> update_cmd_dict_by_local_json_file -> [WARNING]: 本地未找到文件【C:\ctp_python/source/ctp_cmd_json/ctp_cmd_2020-11-21.json】，请确认当前是当天初启动且未有操作！
