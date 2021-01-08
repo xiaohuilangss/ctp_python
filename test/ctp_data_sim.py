@@ -10,8 +10,8 @@ logger_eml = MyLog('ctp_sim_eml', file_level=logging.INFO).logger
 
 if __name__ == '__main__':
 
-    # 登陆聚宽账号
-    jq.auth('13871922088', 'Ypw@522109')
+    # TODO 注册聚宽，并将账号密码填写在这里
+    jq.auth('138********', '*****')
 
     # 创建ctp
     mctp = MyCtp(ctp_login_info=ctp_login_info_sim)

@@ -45,7 +45,7 @@ class OrderStatus:
     """
 
     def __init__(self,
-                 order_status=-1,
+                 order_status='-9',
                  order_submit_status=None,
                  status_msg=None,
                  error_id=None, error_msg=None, limit_price=None):
@@ -86,11 +86,12 @@ class CtpCmd:
     """
 
     def __init__(self, cmd_id, cmd_content):
-        self.cmd_content = cmd_content
+        self.cmd_content: CmdContent = cmd_content
         self.cmd_id = cmd_id
         self.deal_status = {}
         self.order_status = OrderStatus()
         self.created_time = get_current_datetime_str()
+        self.time = time.time()
 
     def get_dict(self):
         """
@@ -135,10 +136,13 @@ class CTradeSpi(api.CThostFtdcTraderSpi):
         # 保存登陆信息
         self.p_rsp_user_login = None
 
+        # cc信息
         self.position = []
         self.position_tmp = []
 
-        self.position_update_flag = False
+        # account信息
+        self.account = []
+        self.account_tmp = []
 
     def OnFrontConnected(self) -> "void":
         logger_ctp_eml.info('\n\n（一）前端连接成功！')
@@ -278,11 +282,16 @@ class CTradeSpi(api.CThostFtdcTraderSpi):
 
             logger_ctp_eml.info('\ncmd_id:%s\np:%s\nvolume:%s\noffset:%s\ndirection:%s\n' % (
             str(cmd_id), str(pTrade.Price), str(pTrade.Volume), str(pTrade.OffsetFlag), str(pTrade.Direction)))
-
-            self.position_update_flag = True
+            try:
+                self.opt.add_opt_offset(price=float(pTrade.Price), amount=int(pTrade.Volume),
+                                        bs_type={0: 'b', 1: 's'}.get(int(pTrade.Direction)))
+                self.opt.save_json()
+                logger_ctp_eml.info('add_opt_offset执行完成！')
+            except Exception as e_:
+                logger_ctp_eml.exception('add_opt_offset函数执行失败，原因：\n%s' % str(e_))
 
         except Exception as e_:
-            logger_ctp_eml.info('收到成交回报，但解析反馈结果时出错，原因：\n%s' % str(e_))
+            logger_ctp_eml.exception('收到成交回报，但解析反馈结果时出错，原因：\n%s' % str(e_))
 
     def OnRtnOrder(self, pOrder: 'CThostFtdcOrderField') -> "void":
         """
@@ -445,7 +454,93 @@ class CTradeSpi(api.CThostFtdcTraderSpi):
             logger_ctp_eml.exception('cc信息更新失败！具体原因：\n%s' % str(e))
 
     def OnErrRtnOrderAction(self, pOrderAction: 'CThostFtdcOrderActionField', pRspInfo: 'CThostFtdcRspInfoField'):
+        # 获取cmd_id
+        cmd_id = self.ccl.gen_cmd_id(front_id=pOrderAction.FrontID, session_id=pOrderAction.SessionID, order_ref=pOrderAction.OrderRef)
+
+        if self.cmd_exist(cmd_id):
+            self.ccl.cmd_dict[cmd_id].order_status.order_status = pRspInfo.ErrorID
+            self.ccl.cmd_dict[cmd_id].order_status.status_msg = pRspInfo.ErrorMsg
+
         logger_ctp_eml.error('撤单失败！\nErrorId:%s\nErrorMsg:%s' % (str(pRspInfo.ErrorID), str(pRspInfo.ErrorMsg)))
+
+    def OnRspQryTradingAccount(self, pTradingAccount: 'CThostFtdcTradingAccountField', pRspInfo: 'CThostFtdcRspInfoField', nRequestID: 'int', bIsLast: 'bool'):
+
+        """
+    BrokerID = property(_thosttraderapi.CThostFtdcTradingAccountField_BrokerID_get, _thosttraderapi.CThostFtdcTradingAccountField_BrokerID_set)
+    AccountID = property(_thosttraderapi.CThostFtdcTradingAccountField_AccountID_get, _thosttraderapi.CThostFtdcTradingAccountField_AccountID_set)
+    PreMortgage = property(_thosttraderapi.CThostFtdcTradingAccountField_PreMortgage_get, _thosttraderapi.CThostFtdcTradingAccountField_PreMortgage_set)
+    PreCredit = property(_thosttraderapi.CThostFtdcTradingAccountField_PreCredit_get, _thosttraderapi.CThostFtdcTradingAccountField_PreCredit_set)
+    PreDeposit = property(_thosttraderapi.CThostFtdcTradingAccountField_PreDeposit_get, _thosttraderapi.CThostFtdcTradingAccountField_PreDeposit_set)
+    PreBalance = property(_thosttraderapi.CThostFtdcTradingAccountField_PreBalance_get, _thosttraderapi.CThostFtdcTradingAccountField_PreBalance_set)
+    PreMargin = property(_thosttraderapi.CThostFtdcTradingAccountField_PreMargin_get, _thosttraderapi.CThostFtdcTradingAccountField_PreMargin_set)
+    InterestBase = property(_thosttraderapi.CThostFtdcTradingAccountField_InterestBase_get, _thosttraderapi.CThostFtdcTradingAccountField_InterestBase_set)
+    Interest = property(_thosttraderapi.CThostFtdcTradingAccountField_Interest_get, _thosttraderapi.CThostFtdcTradingAccountField_Interest_set)
+    Deposit = property(_thosttraderapi.CThostFtdcTradingAccountField_Deposit_get, _thosttraderapi.CThostFtdcTradingAccountField_Deposit_set)
+    Withdraw = property(_thosttraderapi.CThostFtdcTradingAccountField_Withdraw_get, _thosttraderapi.CThostFtdcTradingAccountField_Withdraw_set)
+    FrozenMargin = property(_thosttraderapi.CThostFtdcTradingAccountField_FrozenMargin_get, _thosttraderapi.CThostFtdcTradingAccountField_FrozenMargin_set)
+    FrozenCash = property(_thosttraderapi.CThostFtdcTradingAccountField_FrozenCash_get, _thosttraderapi.CThostFtdcTradingAccountField_FrozenCash_set)
+    FrozenCommission = property(_thosttraderapi.CThostFtdcTradingAccountField_FrozenCommission_get, _thosttraderapi.CThostFtdcTradingAccountField_FrozenCommission_set)
+    CurrMargin = property(_thosttraderapi.CThostFtdcTradingAccountField_CurrMargin_get, _thosttraderapi.CThostFtdcTradingAccountField_CurrMargin_set)
+    CashIn = property(_thosttraderapi.CThostFtdcTradingAccountField_CashIn_get, _thosttraderapi.CThostFtdcTradingAccountField_CashIn_set)
+    Commission = property(_thosttraderapi.CThostFtdcTradingAccountField_Commission_get, _thosttraderapi.CThostFtdcTradingAccountField_Commission_set)
+    CloseProfit = property(_thosttraderapi.CThostFtdcTradingAccountField_CloseProfit_get, _thosttraderapi.CThostFtdcTradingAccountField_CloseProfit_set)
+    PositionProfit = property(_thosttraderapi.CThostFtdcTradingAccountField_PositionProfit_get, _thosttraderapi.CThostFtdcTradingAccountField_PositionProfit_set)
+    Balance = property(_thosttraderapi.CThostFtdcTradingAccountField_Balance_get, _thosttraderapi.CThostFtdcTradingAccountField_Balance_set)
+    Available = property(_thosttraderapi.CThostFtdcTradingAccountField_Available_get, _thosttraderapi.CThostFtdcTradingAccountField_Available_set)
+    WithdrawQuota = property(_thosttraderapi.CThostFtdcTradingAccountField_WithdrawQuota_get, _thosttraderapi.CThostFtdcTradingAccountField_WithdrawQuota_set)
+    Reserve = property(_thosttraderapi.CThostFtdcTradingAccountField_Reserve_get, _thosttraderapi.CThostFtdcTradingAccountField_Reserve_set)
+    TradingDay = property(_thosttraderapi.CThostFtdcTradingAccountField_TradingDay_get, _thosttraderapi.CThostFtdcTradingAccountField_TradingDay_set)
+    SettlementID = property(_thosttraderapi.CThostFtdcTradingAccountField_SettlementID_get, _thosttraderapi.CThostFtdcTradingAccountField_SettlementID_set)
+    Credit = property(_thosttraderapi.CThostFtdcTradingAccountField_Credit_get, _thosttraderapi.CThostFtdcTradingAccountField_Credit_set)
+    Mortgage = property(_thosttraderapi.CThostFtdcTradingAccountField_Mortgage_get, _thosttraderapi.CThostFtdcTradingAccountField_Mortgage_set)
+    ExchangeMargin = property(_thosttraderapi.CThostFtdcTradingAccountField_ExchangeMargin_get, _thosttraderapi.CThostFtdcTradingAccountField_ExchangeMargin_set)
+    DeliveryMargin = property(_thosttraderapi.CThostFtdcTradingAccountField_DeliveryMargin_get, _thosttraderapi.CThostFtdcTradingAccountField_DeliveryMargin_set)
+    ExchangeDeliveryMargin = property(_thosttraderapi.CThostFtdcTradingAccountField_ExchangeDeliveryMargin_get, _thosttraderapi.CThostFtdcTradingAccountField_ExchangeDeliveryMargin_set)
+    ReserveBalance = property(_thosttraderapi.CThostFtdcTradingAccountField_ReserveBalance_get, _thosttraderapi.CThostFtdcTradingAccountField_ReserveBalance_set)
+    CurrencyID = property(_thosttraderapi.CThostFtdcTradingAccountField_CurrencyID_get, _thosttraderapi.CThostFtdcTradingAccountField_CurrencyID_set)
+    PreFundMortgageIn = property(_thosttraderapi.CThostFtdcTradingAccountField_PreFundMortgageIn_get, _thosttraderapi.CThostFtdcTradingAccountField_PreFundMortgageIn_set)
+    PreFundMortgageOut = property(_thosttraderapi.CThostFtdcTradingAccountField_PreFundMortgageOut_get, _thosttraderapi.CThostFtdcTradingAccountField_PreFundMortgageOut_set)
+    FundMortgageIn = property(_thosttraderapi.CThostFtdcTradingAccountField_FundMortgageIn_get, _thosttraderapi.CThostFtdcTradingAccountField_FundMortgageIn_set)
+    FundMortgageOut = property(_thosttraderapi.CThostFtdcTradingAccountField_FundMortgageOut_get, _thosttraderapi.CThostFtdcTradingAccountField_FundMortgageOut_set)
+    FundMortgageAvailable = property(_thosttraderapi.CThostFtdcTradingAccountField_FundMortgageAvailable_get, _thosttraderapi.CThostFtdcTradingAccountField_FundMortgageAvailable_set)
+    MortgageableFund = property(_thosttraderapi.CThostFtdcTradingAccountField_MortgageableFund_get, _thosttraderapi.CThostFtdcTradingAccountField_MortgageableFund_set)
+    SpecProductMargin = property(_thosttraderapi.CThostFtdcTradingAccountField_SpecProductMargin_get, _thosttraderapi.CThostFtdcTradingAccountField_SpecProductMargin_set)
+    SpecProductFrozenMargin = property(_thosttraderapi.CThostFtdcTradingAccountField_SpecProductFrozenMargin_get, _thosttraderapi.CThostFtdcTradingAccountField_SpecProductFrozenMargin_set)
+    SpecProductCommission = property(_thosttraderapi.CThostFtdcTradingAccountField_SpecProductCommission_get, _thosttraderapi.CThostFtdcTradingAccountField_SpecProductCommission_set)
+    SpecProductFrozenCommission = property(_thosttraderapi.CThostFtdcTradingAccountField_SpecProductFrozenCommission_get, _thosttraderapi.CThostFtdcTradingAccountField_SpecProductFrozenCommission_set)
+    SpecProductPositionProfit = property(_thosttraderapi.CThostFtdcTradingAccountField_SpecProductPositionProfit_get, _thosttraderapi.CThostFtdcTradingAccountField_SpecProductPositionProfit_set)
+    SpecProductCloseProfit = property(_thosttraderapi.CThostFtdcTradingAccountField_SpecProductCloseProfit_get, _thosttraderapi.CThostFtdcTradingAccountField_SpecProductCloseProfit_set)
+    SpecProductPositionProfitByAlg = property(_thosttraderapi.CThostFtdcTradingAccountField_SpecProductPositionProfitByAlg_get, _thosttraderapi.CThostFtdcTradingAccountField_SpecProductPositionProfitByAlg_set)
+    SpecProductExchangeMargin = property(_thosttraderapi.CThostFtdcTradingAccountField_SpecProductExchangeMargin_get, _thosttraderapi.CThostFtdcTradingAccountField_SpecProductExchangeMargin_set)
+    BizType = property(_thosttraderapi.CThostFtdcTradingAccountField_BizType_get, _thosttraderapi.CThostFtdcTradingAccountField_BizType_set)
+    FrozenSwap = property(_thosttraderapi.CThostFtdcTradingAccountField_FrozenSwap_get, _thosttraderapi.CThostFtdcTradingAccountField_FrozenSwap_set)
+    RemainSwap = property(_thosttraderapi.CThostFtdcTradingAccountField_RemainSwap_get, _thosttraderapi.CThostFtdcTradingAccountField_RemainSwap_set)
+        :param pTradingAccount:
+        :param pRspInfo:
+        :param nRequestID:
+        :param bIsLast:
+        :return:
+        """
+        if isinstance(pTradingAccount, type(None)):
+            logger_ctp_eml.debug('账户更新得到的信息为空！')
+            return
+        else:
+            logger_ctp_eml.debug('接受到账户更新反馈！')
+        try:
+            self.account_tmp.append({
+                "CloseProfit": pTradingAccount.CloseProfit,
+                "PositionProfit": pTradingAccount.PositionProfit,
+                "Available": pTradingAccount.Available,
+                "Reserve": pTradingAccount.Reserve,
+                "Balance": pTradingAccount.Balance,
+                "CurrMargin": pTradingAccount.CurrMargin
+            })
+            if bIsLast:
+                self.account = self.account_tmp
+                self.account_tmp = []
+                logger_ctp_eml.info('收到账户查询已完成！已经更新账户信息！')
+        except Exception as e:
+            logger_ctp_eml.exception('账户信息更新失败！具体原因：\n%s' % str(e))
 
 
 class CtpCmdList:
@@ -514,7 +609,7 @@ class CtpCmdList:
         self.order_ref_index = 0
 
         # 本地序列化文件路径
-        self.cmd_save_dir = root_path + '/source/ctp_cmd_json/'
+        self.cmd_save_dir = root_path + '/modeng_config/data/ctp_cmd_json/'
 
     def convert_obj_to_json(self):
         if len(self.cmd_dict) == 0:
@@ -534,7 +629,7 @@ class CtpCmdList:
         :return:
         """
         if not os.path.exists(self.cmd_save_dir):
-            os.mkdir(self.cmd_save_dir)
+            os.makedirs(self.cmd_save_dir)
 
         # 打开/创建本地文件
         return self.cmd_save_dir + 'ctp_cmd_' + get_current_date_str() + '.json'
@@ -658,7 +753,7 @@ class CtpCmdList:
 
     def gen_order_ref(self):
         self.order_ref_index = self.order_ref_index + 1
-        return get_current_datetime_str().replace(' ', '').replace('-', '').replace(':', '')[4:] + '-' + str(
+        return get_current_datetime_str().replace(' ', '').replace('-', '').replace(':', '')[8:] + 'n' + str(
             self.order_ref_index)
 
     def gen_cmd_id(self, session_id, front_id, order_ref=None):
@@ -725,11 +820,36 @@ class MyCtp:
         self.ctp_api = api.CThostFtdcTraderApi_CreateFtdcTraderApi()
         self.ctp_spi = CTradeSpi(self.ctp_api, self.ctp_login_info)
 
+    def get_order_status(self, cmd_id):
+        order = self.ctp_spi.ccl.cmd_dict.get(cmd_id, None)
+        if isinstance(order, type(None)):
+            logger.warning('cmd_id:%s未能从ccl中找到对应单子！' % str(cmd_id))
+            return ''
+        else:
+            return order.order_status.order_status
+
+    def get_order_type(self, cmd_id):
+        order: CtpCmd = self.ctp_spi.ccl.cmd_dict.get(cmd_id, None)
+        if isinstance(order, type(None)):
+            logger.warning('cmd_id:%s未能从ccl中找到对应单子！' % str(cmd_id))
+            return ''
+        else:
+            return order.cmd_content.offset
+
+    def get_order_direction(self, cmd_id):
+        order: CtpCmd = self.ctp_spi.ccl.cmd_dict.get(cmd_id, None)
+        if isinstance(order, type(None)):
+            return ''
+        else:
+            return order.cmd_content.direction
+
     def logout(self):
         logger_ctp_eml.info('开始执行释放连接操作...')
         r = self.ctp_api.Release()
-        # self.mmc.logout()
-        logger_ctp_eml.info('释放连接操作完成，返回值%s' % str(r))
+        logger_ctp_eml.info('交ctp完成退出，返回值%s' % str(r))
+        time.sleep(1)
+        self.mmc.logout()
+
         self.ctp_spi.login_success = False
 
     def login(self):
@@ -750,9 +870,9 @@ class MyCtp:
 
         # 加载本地ccl信息
         self.ctp_spi.ccl.update_cmd_dict_by_local_json_file()
+        self.req_trading_account()
+        time.sleep(3)
 
-        # time.sleep(10)
-        # self.ctp_api.Join()
 
     def req_order_field_insert(self, instrument_id, price, volume, offset, direction, any_price=False,
                                debug=False):
@@ -779,9 +899,10 @@ class MyCtp:
                                 api.THOST_FTDC_D_Buy
         :return:
         """
+
+        logger_ctp_eml.info("开始报单！")
+        order_ref = self.ctp_spi.ccl.gen_order_ref()
         try:
-            logger_ctp_eml.info("开始报单！")
-            order_ref = self.ctp_spi.ccl.gen_order_ref()
 
             # 在平的情况下，判断平今与平左
             if offset == '1':
@@ -869,6 +990,8 @@ class MyCtp:
             return cmd_id
         except Exception as e:
             logger_ctp_eml.exception('ctp 命令下发出错！原因：\n%s' % str(e))
+            logger_ctp_eml.exception('ctp 命令下发时使用的ref为\n%s' % str(order_ref))
+
             return None
 
     def req_order_action(self, order_ref):
@@ -903,6 +1026,12 @@ class MyCtp:
         logger_ctp_eml.debug('开始发送cc更新命令！')
         pf = api.CThostFtdcQryInvestorPositionField()
         return self.ctp_api.ReqQryInvestorPosition(pf, 0)
+
+    def req_trading_account(self):
+        iqf = api.CThostFtdcQryTradingAccountField()
+        iqf.InvestorID = self.ctp_login_info['user_id']
+        iqf.BrokerID = self.ctp_login_info['broker_id']
+        self.ctp_api.ReqQryTradingAccount(iqf, 0)
 
     def get_sig_stk_cc_volume(self, stk):
         """
@@ -973,25 +1102,35 @@ class MyCtp:
 
         return self.ctp_api.ReqOrderAction(ioa, 0)
 
-    def update_position(self):
-        """
-        此函数应当定频运行，以便保持cc信息及时更新
-        :return:
-        """
-        if self.ctp_spi.position_update_flag:
-            self.req_investor_position_all()
-            self.ctp_spi.position_update_flag = False
-            time.sleep(3)
-            logger_ctp_eml.info('检测到成交回报将持仓更新标志位置True，ctp更新持仓并重置标志位！')
-            not_null_cc = list(filter(lambda x: x['Position'] > 0, self.ctp_spi.position))
-            if len(not_null_cc) > 0:
-                logger_ctp_eml.info(
-                    '当前非空仓位有！\n%s\n' % str(not_null_cc).replace(',', '\n').replace('{', '\n').replace('}', '\n'))
-            else:
-                logger_ctp_eml.info('当前仓位为空！')
+    def try_zero_all_cc(self):
 
-            # 打印ccl信息
-            logger_ctp_eml.info("ccl信息：%s" % str(self.ctp_spi.ccl.cmd_dict))
+        try:
+            # 查询非空cc
+            cc_not_null = list(filter(lambda x: x['Position'] > 0, self.ctp_spi.position))
+            if len(cc_not_null) > 0:
+                for cc in cc_not_null:
+
+                    ism_id = cc['InstrumentID']
+                    volume = int(cc['Position'])
+                    p_rt = self.mmc.get_stk_rt_price(ism_id)
+                    if isinstance(p_rt, type(None)):
+                        p_rt = cc['SettlementPrice']
+
+                    if cc['PosiDirection'] == '2':
+
+                        p = p_rt* 0.98
+                        self.req_order_field_insert(instrument_id=ism_id, price=int(p-p%5), volume=volume, offset='1', direction='s')
+                        time.sleep(2)
+                    else:
+                        p = p_rt * 1.02
+                        self.req_order_field_insert(instrument_id=ism_id, price=int(p-p%5), volume=volume, offset='1', direction='b')
+                        time.sleep(2)
+
+            logger_ctp_eml.info('完成强清！')
+            self.req_investor_position_all()
+
+        except Exception as e:
+            logger_ctp_eml.exception('强清失败，原因：\n%s' % str(e))
 
 
 class CFtdcMdSpi(mdapi.CThostFtdcMdSpi):
@@ -1069,22 +1208,27 @@ class CFtdcMdSpi(mdapi.CThostFtdcMdSpi):
 class MyMdCpt:
     def __init__(self, login_ctp_info):
         self.login_ctp_info = login_ctp_info
+        self.md_login_success = False
         self.md_user_api = mdapi.CThostFtdcMdApi_CreateFtdcMdApi()
         self.md_user_spi = CFtdcMdSpi(self.md_user_api, ctp_login_info=ctp_login_info)
-        self.login_success = False
 
     def sub_rt_data(self, sub_id_list):
         kind_list = [id.encode('utf-8') for id in sub_id_list]
-        ret = self.md_user_spi.tapi.SubscribeMarketData(kind_list, len(sub_id_list))
-        logger_ctp_eml.debug('已下发数据订阅命令！订阅pz：%s\n返回结果为：%s' % (str(kind_list), str(ret)))
+        while self.md_user_spi.tapi.SubscribeMarketData(kind_list, len(sub_id_list)) != 0:
+            time.sleep(5)
+            logger_ctp_eml.warning('订阅实时数据失败，5秒后重试！')
+        else:
+            logger_ctp_eml.debug('已下发数据订阅命令！订阅pz：%s\n' % str(kind_list))
 
     def login(self):
-        if not self.login_success:
+        if not self.md_login_success:
+            self.md_user_api = mdapi.CThostFtdcMdApi_CreateFtdcMdApi()
+            self.md_user_spi = CFtdcMdSpi(self.md_user_api, ctp_login_info=ctp_login_info)
             self.md_user_api.RegisterFront(ctp_login_info['front_addr_data'])
             self.md_user_api.RegisterSpi(self.md_user_spi)
             self.md_user_api.Init()
             logger_ctp_eml.info('数据ctp初始化完成！')
-            self.login_success = True
+            self.md_login_success = True
         else:
             logger_ctp_eml.info('数据ctp已登录，无需初始化！')
 
@@ -1094,8 +1238,9 @@ class MyMdCpt:
         :return:
         """
         try:
-            self.md_user_api.release()
-            logger_ctp_eml.info('数据ctp完成退出！')
+            r = self.md_user_api.Release()
+            logger_ctp_eml.info('数据ctp完成退出！返回值:%s' % str(r))
+            self.md_login_success = False
         except Exception as e:
             logger_ctp_eml.exception('数据ctp退出失败！原因：\n%s' % str(e))
 
@@ -1104,7 +1249,7 @@ class MyMdCpt:
             d_dict = self.md_user_spi.sub_map[ism_id]
             time_go = time.time() - d_dict['time']
             if time_go > 5:
-                logger_ctp_eml.warning('%s:实时数据延迟警告，已滞后%0.1f秒!' % (ism_id, time_go))
+                logger_ctp_eml.debug('%s:实时数据延迟警告，已滞后%0.1f秒!' % (ism_id, time_go))
             return d_dict['last_price']
         else:
             logger_ctp_eml.debug('%s:未获取实时数据，当前sub_map为：\n%s' % (ism_id, str(self.md_user_spi.sub_map)))
